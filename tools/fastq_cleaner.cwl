@@ -31,7 +31,7 @@ inputs:
       prefix: --fastq2
 
   reads_in_memory:
-    type: long
+    type: int
     default: 500000
     inputBinding:
       prefix: --reads_in_memory

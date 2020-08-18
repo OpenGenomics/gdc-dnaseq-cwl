@@ -33,36 +33,36 @@ inputs:
       type: array
       items: ../tools/readgroup.yml#readgroup_fastq_uuid
   readgroups_bam_uuid_list:
-    type: 
+    type:
       type: array
       items: ../tools/readgroup.yml#readgroups_bam_uuid
   common_biallelic_vcf_gdc_id: string
-  common_biallelic_vcf_file_size: long
+  common_biallelic_vcf_file_size: int
   common_biallelic_vcf_index_gdc_id: string
-  common_biallelic_vcf_index_file_size: long
+  common_biallelic_vcf_index_file_size: int
   known_snp_gdc_id: string
-  known_snp_file_size: long
+  known_snp_file_size: int
   known_snp_index_gdc_id: string
-  known_snp_index_file_size: long
+  known_snp_index_file_size: int
   reference_amb_gdc_id: string
-  reference_amb_file_size: long
+  reference_amb_file_size: int
   reference_ann_gdc_id: string
-  reference_ann_file_size: long
+  reference_ann_file_size: int
   reference_bwt_gdc_id: string
-  reference_bwt_file_size: long
+  reference_bwt_file_size: int
   reference_dict_gdc_id: string
-  reference_dict_file_size: long
+  reference_dict_file_size: int
   reference_fa_gdc_id: string
-  reference_fa_file_size: long
+  reference_fa_file_size: int
   reference_fai_gdc_id: string
-  reference_fai_file_size: long
+  reference_fai_file_size: int
   reference_pac_gdc_id: string
-  reference_pac_file_size: long
+  reference_pac_file_size: int
   reference_sa_gdc_id: string
-  reference_sa_file_size: long
+  reference_sa_file_size: int
   run_markduplicates: boolean
   collect_wgs_metrics: boolean
-  thread_count: long
+  thread_count: int
 
 outputs:
   indexd_bam_uuid:
@@ -85,30 +85,30 @@ steps:
       readgroup_fastq_se_uuid_list: readgroup_fastq_se_uuid_list
       amplicon_kit_set_uuid_list: amplicon_kit_set_uuid_list
       capture_kit_set_uuid_list: capture_kit_set_uuid_list
-      common_biallelic_vcf_gdc_id: common_biallelic_vcf_gdc_id 
-      common_biallelic_vcf_file_size: common_biallelic_vcf_file_size 
-      common_biallelic_vcf_index_gdc_id: common_biallelic_vcf_index_gdc_id 
+      common_biallelic_vcf_gdc_id: common_biallelic_vcf_gdc_id
+      common_biallelic_vcf_file_size: common_biallelic_vcf_file_size
+      common_biallelic_vcf_index_gdc_id: common_biallelic_vcf_index_gdc_id
       common_biallelic_vcf_index_file_size: common_biallelic_vcf_index_file_size
-      known_snp_gdc_id: known_snp_gdc_id 
-      known_snp_file_size: known_snp_file_size 
-      known_snp_index_gdc_id: known_snp_index_gdc_id 
+      known_snp_gdc_id: known_snp_gdc_id
+      known_snp_file_size: known_snp_file_size
+      known_snp_index_gdc_id: known_snp_index_gdc_id
       known_snp_index_file_size: known_snp_index_file_size
-      reference_amb_gdc_id: reference_amb_gdc_id 
+      reference_amb_gdc_id: reference_amb_gdc_id
       reference_amb_file_size: reference_amb_file_size
-      reference_ann_gdc_id: reference_ann_gdc_id 
+      reference_ann_gdc_id: reference_ann_gdc_id
       reference_ann_file_size: reference_ann_file_size
-      reference_bwt_gdc_id: reference_bwt_gdc_id 
-      reference_bwt_file_size: reference_bwt_file_size 
-      reference_dict_gdc_id: reference_dict_gdc_id 
-      reference_dict_file_size: reference_dict_file_size 
-      reference_fa_gdc_id: reference_fa_gdc_id 
-      reference_fa_file_size: reference_fa_file_size 
-      reference_fai_gdc_id: reference_fai_gdc_id 
-      reference_fai_file_size: reference_fai_file_size 
-      reference_pac_gdc_id: reference_pac_gdc_id 
-      reference_pac_file_size: reference_pac_file_size 
-      reference_sa_gdc_id: reference_sa_gdc_id 
-      reference_sa_file_size: reference_sa_file_size 
+      reference_bwt_gdc_id: reference_bwt_gdc_id
+      reference_bwt_file_size: reference_bwt_file_size
+      reference_dict_gdc_id: reference_dict_gdc_id
+      reference_dict_file_size: reference_dict_file_size
+      reference_fa_gdc_id: reference_fa_gdc_id
+      reference_fa_file_size: reference_fa_file_size
+      reference_fai_gdc_id: reference_fai_gdc_id
+      reference_fai_file_size: reference_fai_file_size
+      reference_pac_gdc_id: reference_pac_gdc_id
+      reference_pac_file_size: reference_pac_file_size
+      reference_sa_gdc_id: reference_sa_gdc_id
+      reference_sa_file_size: reference_sa_file_size
     out: [ rg_fastq_pe_files, rg_fastq_se_files, rg_bam_files, amplicon_kit_files,
            capture_kit_files, reference_fasta, common_biallelic_vcf, known_snp_vcf ]
 

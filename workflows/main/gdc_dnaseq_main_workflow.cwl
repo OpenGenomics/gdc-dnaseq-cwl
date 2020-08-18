@@ -55,7 +55,7 @@ inputs:
       - .pac
       - .sa
       - ^.dict
-  thread_count: long
+  thread_count: int
 
 outputs:
   output_bam:
@@ -120,7 +120,7 @@ steps:
     in:
       job_uuid: job_uuid
       reference_sequence: reference_sequence
-      readgroup_fastq_pe: merge_fastq_arrays/merged_pe_fastq_array 
+      readgroup_fastq_pe: merge_fastq_arrays/merged_pe_fastq_array
       thread_count: thread_count
     out: [ bam, sqlite ]
 
@@ -130,7 +130,7 @@ steps:
     in:
       job_uuid: job_uuid
       reference_sequence: reference_sequence
-      readgroup_fastq_se: merge_fastq_arrays/merged_se_fastq_array 
+      readgroup_fastq_se: merge_fastq_arrays/merged_se_fastq_array
       thread_count: thread_count
     out: [ bam, sqlite ]
 
@@ -158,7 +158,7 @@ steps:
 
   conditional_markduplicates:
     run: ../utils/conditional_markduplicates.cwl
-    scatter: run_markduplicates 
+    scatter: run_markduplicates
     in:
       bam: dup_branch_decider/out_bam
       job_uuid: job_uuid
@@ -175,7 +175,7 @@ steps:
       job_uuid: job_uuid
       thread_count: thread_count
       bam_name: bam_name
-      skip_markduplicates: dup_branch_decider/skip_markdup_workflow 
+      skip_markduplicates: dup_branch_decider/skip_markdup_workflow
     out: [ output ]
 
   dup_outputs_decider:
@@ -184,12 +184,12 @@ steps:
       markdup_bam: conditional_markduplicates/output
       markdup_sqlite: conditional_markduplicates/sqlite
       skip_markdup_bam: conditional_skip_markduplicates/output
-    out: [ bam, sqlite ] 
+    out: [ bam, sqlite ]
 
   gatk_baserecalibrator:
     run: ../../tools/gatk4_baserecalibrator.cwl
     in:
-      input: dup_outputs_decider/bam 
+      input: dup_outputs_decider/bam
       known-sites: known_snp
       reference: reference_sequence
     out: [ output_grp ]
@@ -197,7 +197,7 @@ steps:
   gatk_applybqsr:
     run: ../../tools/gatk4_applybqsr.cwl
     in:
-      input: dup_outputs_decider/bam 
+      input: dup_outputs_decider/bam
       bqsr-recal-file: gatk_baserecalibrator/output_grp
     out: [ output_bam ]
 

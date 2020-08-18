@@ -57,7 +57,7 @@ inputs:
       position: 99
 
   kmers:
-    type: long
+    type: int
     default: 7
     inputBinding:
       prefix: --kmers
@@ -104,7 +104,7 @@ inputs:
       prefix: --quiet
 
   threads:
-    type: long
+    type: int
     default: 1
     inputBinding:
       prefix: --threads
@@ -114,5 +114,5 @@ outputs:
     type: File
     outputBinding:
       glob: "*_fastqc.zip"
-          
+
 baseCommand: [/usr/local/FastQC/fastqc]

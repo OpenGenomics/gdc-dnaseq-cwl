@@ -6,7 +6,7 @@ requirements:
 
 inputs:
   bam: File
-  run_wgs: long 
+  run_wgs: int
   fasta:
     type: File
     secondaryFiles:

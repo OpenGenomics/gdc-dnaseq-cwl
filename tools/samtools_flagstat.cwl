@@ -22,7 +22,7 @@ inputs:
       position: 1
 
   threads:
-    type: long
+    type: int
     inputBinding:
       position: 0
       prefix: -@

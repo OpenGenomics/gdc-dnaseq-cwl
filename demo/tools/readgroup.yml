@@ -4,25 +4,25 @@
       - name: CN
         type: string?
       - name: DS
-        type: string? 
+        type: string?
       - name: DT
-        type: string? 
+        type: string?
       - name: FO
-        type: string? 
+        type: string?
       - name: ID
         type: string
       - name: KS
-        type: string? 
+        type: string?
       - name: LB
         type: string?
       - name: PI
-        type: string? 
+        type: string?
       - name: PL
         type: string
       - name: PM
-        type: string? 
+        type: string?
       - name: PU
-        type: string? 
+        type: string?
       - name: SM
         type: string
 
@@ -45,18 +45,18 @@
         type:
           type: array
           items: readgroup_meta
- 
+
   - name: readgroup_fastq_uuid
     type: record
     fields:
       - name: forward_fastq_uuid
         type: string
       - name: forward_fastq_file_size
-        type: long
+        type: int
       - name: reverse_fastq_uuid
         type: string?
       - name: reverse_fastq_file_size
-        type: long?
+        type: int?
       - name: readgroup_meta
         type: readgroup_meta
 
@@ -66,7 +66,7 @@
       - name: bam_uuid
         type: string
       - name: bam_file_size
-        type: long
+        type: int
       - name: readgroup_meta_list
         type:
           type: array

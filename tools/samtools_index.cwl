@@ -12,7 +12,7 @@ requirements:
     expressionLib:
       $import: ./expression_lib.cwl
   - class: ResourceRequirement
-    coresMin: $(inputs.threads) 
+    coresMin: $(inputs.threads)
     ramMin: 1000
     tmpdirMin: $(file_size_multiplier(inputs.input_bam))
     outdirMin: $(file_size_multiplier(inputs.input_bam))
@@ -26,7 +26,7 @@ inputs:
       valueFrom: $(self.basename)
 
   threads:
-    type: long 
+    type: int
     inputBinding:
       position: 0
       prefix: -@

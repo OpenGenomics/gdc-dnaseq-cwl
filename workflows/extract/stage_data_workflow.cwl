@@ -34,29 +34,29 @@ inputs:
       type: array
       items: ../../tools/target_kit_schema.yml#capture_kit_set_uuid
   common_biallelic_vcf_gdc_id: string
-  common_biallelic_vcf_file_size: long
+  common_biallelic_vcf_file_size: int
   common_biallelic_vcf_index_gdc_id: string
-  common_biallelic_vcf_index_file_size: long
+  common_biallelic_vcf_index_file_size: int
   known_snp_gdc_id: string
-  known_snp_file_size: long
+  known_snp_file_size: int
   known_snp_index_gdc_id: string
-  known_snp_index_file_size: long
+  known_snp_index_file_size: int
   reference_amb_gdc_id: string
-  reference_amb_file_size: long
+  reference_amb_file_size: int
   reference_ann_gdc_id: string
-  reference_ann_file_size: long
+  reference_ann_file_size: int
   reference_bwt_gdc_id: string
-  reference_bwt_file_size: long
+  reference_bwt_file_size: int
   reference_dict_gdc_id: string
-  reference_dict_file_size: long
+  reference_dict_file_size: int
   reference_fa_gdc_id: string
-  reference_fa_file_size: long
+  reference_fa_file_size: int
   reference_fai_gdc_id: string
-  reference_fai_file_size: long
+  reference_fai_file_size: int
   reference_pac_gdc_id: string
-  reference_pac_file_size: long
+  reference_pac_file_size: int
   reference_sa_gdc_id: string
-  reference_sa_file_size: long
+  reference_sa_file_size: int
 
 outputs:
   rg_fastq_pe_files:
@@ -93,11 +93,11 @@ outputs:
     type: File
     outputSource: root_fasta_files/output
 
-  common_biallelic_vcf: 
+  common_biallelic_vcf:
     type: File
     outputSource: root_common_biallelic_vcf_files/output
 
-  known_snp_vcf: 
+  known_snp_vcf:
     type: File
     outputSource: root_known_snp_files/output
 

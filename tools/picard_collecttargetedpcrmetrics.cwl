@@ -24,7 +24,7 @@ inputs:
       separate: false
 
   CUSTOM_AMPLICON_SET_NAME:
-    type: string? 
+    type: string?
     inputBinding:
       prefix: CUSTOM_AMPLICON_SET_NAME=
       position: 11
@@ -39,7 +39,7 @@ inputs:
       separate: false
 
   COVERAGE_CAP:
-    type: long
+    type: int
     default: 200
     inputBinding:
       prefix: COVERAGE_CAP=
@@ -69,7 +69,7 @@ inputs:
       - "READ_GROUP"
 
   MINIMUM_BASE_QUALITY:
-    type: long
+    type: int
     default: 20
     inputBinding:
       prefix: MINIMUM_BASE_QUALITY=
@@ -77,7 +77,7 @@ inputs:
       separate: false
 
   MINIMUM_MAPPING_QUALITY:
-    type: long
+    type: int
     default: 20
     inputBinding:
       prefix: MINIMUM_MAPPING_QUALITY=
@@ -85,7 +85,7 @@ inputs:
       separate: false
 
   NEAR_DISTANCE:
-    type: long
+    type: int
     default: 250
     inputBinding:
       prefix: NEAR_DISTANCE=
@@ -100,14 +100,14 @@ inputs:
       separate: false
 
   PER_BASE_COVERAGE:
-    type: string? 
+    type: string?
     inputBinding:
       prefix: PER_BASE_COVERAGE=
       position: 20
       separate: false
 
   PER_TARGET_COVERAGE:
-    type: string? 
+    type: string?
     inputBinding:
       prefix: PER_TARGET_COVERAGE=
       position: 21
@@ -124,7 +124,7 @@ inputs:
       - .fai
 
   SAMPLE_SIZE:
-    type: long
+    type: int
     default: 10000
     inputBinding:
       prefix: SAMPLE_SIZE=

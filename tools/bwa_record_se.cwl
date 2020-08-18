@@ -44,10 +44,10 @@ inputs:
       valueFrom: $(null)
 
   samse_maxOcc:
-    type: long
+    type: int
     default: 3
 
-  thread_count: long
+  thread_count: int
 
 outputs:
   OUTPUT:

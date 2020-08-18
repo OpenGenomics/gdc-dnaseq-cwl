@@ -48,7 +48,7 @@ inputs:
       loadContents: true
       valueFrom: $(null)
 
-  thread_count: long
+  thread_count: int
 
 outputs:
   OUTPUT:

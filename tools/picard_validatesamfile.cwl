@@ -38,7 +38,7 @@ inputs:
       separate: false
 
   MAX_OUTPUT:
-    type: long
+    type: int
     default: 2147483647
     inputBinding:
       prefix: MAX_OUTPUT=
@@ -82,7 +82,7 @@ arguments:
   - valueFrom: $(inputs.INPUT.basename + ".metrics")
     prefix: OUTPUT=
     separate: false
-      
+
 successCodes: [0, 2, 3]
 
 baseCommand: [java, -jar, /usr/local/bin/picard.jar, ValidateSamFile, IS_BISULFITE_SEQUENCED=false]

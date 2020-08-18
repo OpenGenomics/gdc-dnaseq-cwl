@@ -7,14 +7,14 @@ requirements:
 inputs:
   bam: File[]
   job_uuid: string
-  thread_count: long
+  thread_count: int
   bam_name: string
-  run_markduplicates: long
+  run_markduplicates: int
 
 outputs:
   output:
     type: File
-    outputSource: index_markdup_bam/output_bam 
+    outputSource: index_markdup_bam/output_bam
   sqlite:
     type: File
     outputSource: picard_markduplicates_to_sqlite/sqlite

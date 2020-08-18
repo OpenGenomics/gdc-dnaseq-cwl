@@ -26,7 +26,7 @@ The example input json in `example/main_workflow_example_wgs_input.json`.
 | `known_snp` | `File` | tabix-indexed dbSNP VCF |
 | `run_markduplicates` | `boolean` | this should be `true` in all cases except for amplicon-based PCR sequencing libraries |
 | `reference_sequence` | `File` | the reference fasta file and its associated BWA/fai/dict index files |
-| `thread_count` | `long` | the number of cores to use for multi-threaded tools |
+| `thread_count` | `int` | the number of cores to use for multi-threaded tools |
 
 **Custom Data Types**
 

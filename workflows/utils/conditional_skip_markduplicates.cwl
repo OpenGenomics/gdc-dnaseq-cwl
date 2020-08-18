@@ -5,14 +5,14 @@ id: gdc_dnaseq_conditional_skip_markduplicates_wf
 inputs:
   bam: File[]
   job_uuid: string
-  thread_count: long
+  thread_count: int
   bam_name: string
-  skip_markduplicates: long
+  skip_markduplicates: int
 
 outputs:
   output:
     type: File
-    outputSource: picard_mergesamfiles/MERGED_OUTPUT 
+    outputSource: picard_mergesamfiles/MERGED_OUTPUT
 
 steps:
   picard_mergesamfiles:

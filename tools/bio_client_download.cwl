@@ -41,7 +41,7 @@ inputs:
       position: 98
 
   file_size:
-    type: long
+    type: int
     default: 1
 
 outputs:
@@ -49,5 +49,5 @@ outputs:
     type: File
     outputBinding:
       glob: "*"
-    
+
 baseCommand: [/usr/local/bin/bio_client.py]

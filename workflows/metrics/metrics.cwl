@@ -21,7 +21,7 @@ inputs:
     type:
       type: array
       items: ../../tools/target_kit_schema.yml#capture_kit_set_file
-  collect_wgs_metrics: long[]
+  collect_wgs_metrics: int[]
   common_biallelic_vcf:
     type: File
     secondaryFiles:
@@ -42,7 +42,7 @@ inputs:
     type: File
     secondaryFiles:
       - .tbi
-  thread_count: long
+  thread_count: int
 
 outputs:
   sqlite:
@@ -145,7 +145,7 @@ steps:
 
   wgs_metrics:
     run: wgs_metrics.cwl
-    scatter: run_wgs 
+    scatter: run_wgs
     in:
       bam: bam
       run_wgs: collect_wgs_metrics

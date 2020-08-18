@@ -22,7 +22,7 @@ inputs:
       - ^.dict
   readgroup_fastq_pe:
     type: ../../tools/readgroup.yml#readgroup_fastq_file
-  thread_count: long
+  thread_count: int
 
 outputs:
   bam:

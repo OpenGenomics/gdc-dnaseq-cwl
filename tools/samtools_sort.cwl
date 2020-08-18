@@ -25,7 +25,7 @@ inputs:
       prefix: -o
 
   threads:
-    type: long
+    type: int
     inputBinding:
       position: 0
       prefix: -@
