@@ -1,0 +1,30 @@
+{
+    "bam_name": "5ed43d83-d364-42e9-aad8-46511b502707_new_gdc_aln_wxs_se_cromwell_test.bam",
+    "job_uuid": "5ed43d83-d364-42e9-aad8-46511b502707",
+    "collect_wgs_metrics": true,
+    "amplicon_kit_set_file_list": [],
+    "capture_kit_set_file_list": [],
+    "readgroup_fastq_se_file_list": [],
+    "readgroup_fastq_pe_file_list": [
+        {
+            "forward_fastq": {"class": "File", "path": "/mnt/SCRATCH/playground/benchmark/BINF-308/wgs/2650_1.fq.gz"},
+            "reverse_fastq": {"class": "File", "path": "/mnt/SCRATCH/playground/benchmark/BINF-308/wgs/2650_2.fq.gz"},
+            "readgroup_meta": {
+                "CN": "unknown",
+                "DT": null,
+                "ID": "2650",
+                "SM": "COLO-829",
+                "LB": "532",
+                "PL": "ILLUMINA",
+                "PU": "0_6",
+                "PM": null
+            }
+        }
+    ],
+    "readgroups_bam_file_list": [],
+    "common_biallelic_vcf": {"class": "File", "path": "/mnt/SCRATCH/reference/hwf/somatic-hg38_small_exac_common_3.hg38.vcf.gz"},
+    "known_snp": {"class": "File", "path": "/mnt/SCRATCH/reference/hwf/dbsnp_144.hg38.vcf.gz"},
+    "run_markduplicates": true,
+    "reference_sequence": {"class": "File", "path": "/mnt/SCRATCH/reference/hwf/GRCh38.d1.vd1.fa"},
+    "thread_count": 4
+}
