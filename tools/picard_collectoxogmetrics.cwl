@@ -2,7 +2,7 @@ cwlVersion: v1.0
 id: picard_collectoxogmetrics
 requirements:
   - class: DockerRequirement
-    dockerPull: quay.io/ncigdc/picard:092d034713aff237cf07ef28c22a46a113d1a59dc7ec6d71beb72295044a46f8
+    dockerPull: quay.io/ncigdc/picard:2.23.aws_fix
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
     coresMin: 1
@@ -78,4 +78,4 @@ arguments:
     prefix: OUTPUT=
     separate: false
 
-baseCommand: [java, -jar, /usr/local/bin/picard.jar, CollectOxoGMetrics]
+baseCommand: [java, -jar, /opt/picard-2.23.3-6-g4463289-SNAPSHOT.jar, CollectOxoGMetrics]
