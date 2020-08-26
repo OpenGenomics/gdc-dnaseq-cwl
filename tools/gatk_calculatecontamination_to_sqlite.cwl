@@ -48,4 +48,4 @@ outputs:
     outputBinding:
       glob: $(inputs.job_uuid + ".db")
 
-baseCommand: [/usr/local/bin/picard_metrics_sqlite, --metric_name, gatk_CalculateContamination]
+baseCommand: [python3, /opt/picard_metrics_sqlite/main.py, --metric_name, gatk_CalculateContamination]

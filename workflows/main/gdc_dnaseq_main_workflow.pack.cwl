@@ -1707,7 +1707,8 @@
                 }
             ], 
             "baseCommand": [
-                "/usr/local/bin/picard_metrics_sqlite", 
+                "python3", 
+                "/opt/picard_metrics_sqlite/main.py", 
                 "--metric_name", 
                 "gatk_CalculateContamination"
             ]
