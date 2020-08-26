@@ -1622,6 +1622,11 @@
                     "valueFrom": "$(inputs.input.nameroot + \"_pileupsummaries.table\")", 
                     "prefix": "--output", 
                     "separate": true
+                }, 
+                {
+                    "valueFrom": "$(inputs.variant.path)", 
+                    "prefix": "--intervals", 
+                    "separate": true
                 }
             ], 
             "baseCommand": [
@@ -2305,7 +2310,7 @@
             "baseCommand": [
                 "java", 
                 "-jar", 
-                "/opt/picard-2.23.3-6-g4463289-SNAPSHOT.jar", 
+                "/opt/picard.jar", 
                 "CollectOxoGMetrics"
             ]
         }, 

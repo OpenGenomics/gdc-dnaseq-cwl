@@ -41,5 +41,8 @@ arguments:
   - valueFrom: $(inputs.input.nameroot + "_pileupsummaries.table")
     prefix: --output
     separate: true
+  - valueFrom: $(inputs.variant.path)
+    prefix: --intervals
+    separate: true
 
 baseCommand: [java, -jar, /opt/gatk-package-4.1.8.1-8-gfcb7889-SNAPSHOT-local.jar, GetPileupSummaries]
