@@ -78,4 +78,4 @@ arguments:
     prefix: OUTPUT=
     separate: false
 
-baseCommand: [java, -jar, /opt/picard.jar, CollectOxoGMetrics]
+baseCommand: [java, -jar, /opt/picard-2.23.3-6-g4463289-SNAPSHOT-all.jar, CollectOxoGMetrics]
