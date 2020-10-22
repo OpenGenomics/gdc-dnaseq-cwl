@@ -6,10 +6,10 @@ requirements:
     dockerPull: quay.io/ncigdc/fastqc:27ec215ea82bd62a76ec86f9c8a692010cc0c99169e68d2fa0c0052450321f57
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
-    coresMin: $(inputs.threads)
-    coresMax: $(inputs.threads)
-    ramMin: 5000
-    ramMax: 5000
+    coresMin: 1
+    coresMax: 4
+    ramMin: 7600
+    ramMax: 7600
     tmpdirMin: 50
     tmpdirMax: 50
     outdirMin: 5

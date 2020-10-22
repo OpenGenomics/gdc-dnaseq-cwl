@@ -9,9 +9,9 @@ requirements:
       $import: ./expression_lib.cwl
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 1
-    ramMin: 10000
-    ramMax: 10000
+    coresMax: 8
+    ramMin: 15300
+    ramMax: 15300
     tmpdirMin: $(Math.ceil(2 * sum_file_array_size(inputs.INPUT)))
     outdirMin: $(Math.ceil(2 * sum_file_array_size(inputs.INPUT)))
 
@@ -40,7 +40,7 @@ inputs:
     format: "edam:format_2572"
 
   INTERVALS:
-    type: File? 
+    type: File?
     inputBinding:
       prefix: INTERVALS=
       separate: false

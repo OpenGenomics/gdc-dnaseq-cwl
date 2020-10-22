@@ -9,9 +9,9 @@ requirements:
       $import: ./expression_lib.cwl
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 1
-    ramMin: 15000
-    ramMax: 15000
+    coresMax: 8
+    ramMin: 15300
+    ramMax: 15300
     tmpdirMin: $(Math.ceil(1.1 * sum_file_array_size(inputs.INPUT)))
     outdirMin: $(Math.ceil(1.1 * sum_file_array_size(inputs.INPUT)))
 
@@ -48,7 +48,7 @@ inputs:
   OUTBAM:
     type: string
     inputBinding:
-      prefix: OUTPUT= 
+      prefix: OUTPUT=
       separate: false
 
 outputs:

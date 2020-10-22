@@ -3,6 +3,11 @@ class: ExpressionTool
 id: decider_markdup_input
 requirements:
   - class: InlineJavascriptRequirement
+  - class: ResourceRequirement
+    coresMin: 1
+    coresMax: 2
+    ramMin: 3800
+    ramMax: 3800
 
 inputs:
   run_markdups: boolean

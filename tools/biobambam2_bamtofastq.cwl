@@ -7,9 +7,9 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 1
-    ramMin: 2000
-    ramMax: 2000
+    coresMax: 8
+    ramMin: 15300
+    ramMax: 15300
     tmpdirMin: $(Math.ceil(0.9 * inputs.filename.size / 1048576))
     tmpdirMax: $(Math.ceil(0.9 * inputs.filename.size / 1048576))
     outdirMin: $(Math.ceil(0.9 * inputs.filename.size / 1048576))

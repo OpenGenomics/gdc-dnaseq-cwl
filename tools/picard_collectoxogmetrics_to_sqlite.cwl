@@ -7,9 +7,9 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 1
-    ramMin: 1000
-    ramMax: 1000
+    coresMax: 2
+    ramMin: 3800
+    ramMax: 3800
     tmpdirMin: 5
     tmpdirMax: 5
     outdirMin: 5
@@ -57,5 +57,5 @@ outputs:
     type: File
     outputBinding:
       glob: $(inputs.job_uuid + ".db")
-          
+
 baseCommand: [/usr/local/bin/picard_metrics_sqlite, --metric_name, CollectOxoGMetrics]

@@ -5,6 +5,11 @@ requirements:
   - class: DockerRequirement
     dockerPull: quay.io/ncigdc/gatk:4.1.8.aws_fix
   - class: InlineJavascriptRequirement
+  - class: ResourceRequirement
+    coresMin: 1
+    coresMax: 4
+    ramMin: 7600
+    ramMax: 7600
 
 inputs:
   input:

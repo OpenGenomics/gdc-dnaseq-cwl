@@ -7,9 +7,9 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 1
-    ramMin: 32768
-    ramMax: 32768
+    coresMax: 16
+    ramMin: 30600
+    ramMax: 30600
     tmpdirMin: 1000
     tmpdirMax: 1000
     outdirMin: 1000

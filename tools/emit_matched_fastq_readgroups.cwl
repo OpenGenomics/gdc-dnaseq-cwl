@@ -6,6 +6,11 @@ requirements:
     types:
       - $import: readgroup.yml
   - class: InlineJavascriptRequirement
+  - class: ResourceRequirement
+    coresMin: 1
+    coresMax: 2
+    ramMin: 3800
+    ramMax: 3800
 
 inputs:
   bam_readgroup_contents: string[]
@@ -153,7 +158,7 @@ expression: |
         // try to look up in the graph metadata using rgname as both rgid and rgpu
         var graph_rg = find_graph_rg(readgroup_name);
         if (graph_rg !== null) {
-          var rec = make_record(graph_rg, fq, rev_fq); 
+          var rec = make_record(graph_rg, fq, rev_fq);
           normalize_record(rec);
           output_array.push(rec);
         }
@@ -163,7 +168,7 @@ expression: |
           if(bam_rg === null) {
             throw "Unable to find the matching bam RG record";
           }
-          var rec = make_record(bam_rg, fq, rev_fq); 
+          var rec = make_record(bam_rg, fq, rev_fq);
           normalize_record(rec);
           output_array.push(rec);
         }

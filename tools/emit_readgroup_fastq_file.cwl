@@ -6,6 +6,11 @@ requirements:
     types:
       - $import: readgroup.yml
   - class: InlineJavascriptRequirement
+  - class: ResourceRequirement
+    coresMin: 1
+    coresMax: 2
+    ramMin: 3800
+    ramMax: 3800
 
 inputs:
   forward_fastq:

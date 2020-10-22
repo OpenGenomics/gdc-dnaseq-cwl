@@ -7,9 +7,9 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 1
-    ramMin: 49152
-    ramMax: 49152
+    coresMax: 16
+    ramMin: 30600
+    ramMax: 30600
     tmpdirMin: 1000
     tmpdirMax: 1000
     outdirMin: 1000
@@ -24,7 +24,7 @@ inputs:
       separate: false
 
   BAIT_SET_NAME:
-    type: string? 
+    type: string?
     inputBinding:
       prefix: BAIT_SET_NAME=
       position: 11
@@ -100,14 +100,14 @@ inputs:
       separate: false
 
   PER_BASE_COVERAGE:
-    type: string? 
+    type: string?
     inputBinding:
       prefix: PER_BASE_COVERAGE=
       position: 20
       separate: false
 
   PER_TARGET_COVERAGE:
-    type: string? 
+    type: string?
     inputBinding:
       prefix: PER_TARGET_COVERAGE=
       position: 21

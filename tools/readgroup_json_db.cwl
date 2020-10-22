@@ -7,9 +7,9 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 1
-    ramMin: 1000
-    ramMax: 1000
+    coresMax: 2
+    ramMin: 3800
+    ramMax: 3800
     tmpdirMin: 1
     tmpdirMax: 1
     outdirMin: 1
@@ -37,6 +37,6 @@ outputs:
     type: File
     format: "edam:format_3621"
     outputBinding:
-      glob: $(inputs.job_uuid + ".db")         
-          
+      glob: $(inputs.job_uuid + ".db")
+
 baseCommand: [/usr/local/bin/readgroup_json_db]

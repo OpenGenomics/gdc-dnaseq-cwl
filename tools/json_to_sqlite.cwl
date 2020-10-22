@@ -6,9 +6,9 @@ requirements:
     dockerPull: quay.io/ncigdc/json-to-sqlite:439b1b7f41fedc927859177a8073ac8b9ab8179b9c474fc274ac415d95b6eb7c
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 1
-    ramMin: 1000
-    ramMax: 1000
+    coresMax: 2
+    ramMin: 3800
+    ramMax: 3800
     tmpdirMin: 10
     tmpdirMax: 10
     outdirMin: 10

@@ -7,9 +7,9 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 1
-    ramMin: 1000
-    ramMax: 1000
+    coresMax: 2
+    ramMin: 3800
+    ramMax: 3800
     tmpdirMin: |
       ${
       var req_space = 0;
@@ -17,7 +17,7 @@ requirements:
           req_space += inputs.source_sqlite[i].size;
         }
       return Math.ceil(2 * (req_space / 1048576));
-      }      
+      }
     outdirMin: |
       ${
       var req_space = 0;
@@ -25,7 +25,7 @@ requirements:
           req_space += inputs.source_sqlite[i].size;
         }
       return Math.ceil(req_space / 1048576);
-      }      
+      }
 
 inputs:
   source_sqlite:

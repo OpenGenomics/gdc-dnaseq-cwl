@@ -6,8 +6,10 @@ requirements:
     dockerPull: quay.io/ncigdc/samtools:147bd4cc606a63c7435907d97fea6e94e9ea9ed58c18f390cab8bc40b1992df7
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
-    coresMin: $(inputs.threads)
-    ramMin: 1000
+    coresMin: 1
+    coresMax: 8
+    ramMin: 15300
+    ramMax: 15300
     tmpdirMin: $((2 * inputs.input_bam.size) / 1048576)
     outdirMin: $((2 * inputs.input_bam.size) / 1048576)
 

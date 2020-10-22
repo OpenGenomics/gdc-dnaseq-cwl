@@ -15,9 +15,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 1, 
                     "tmpdirMax": 1, 
                     "outdirMin": 1, 
@@ -258,9 +258,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 1, 
                     "tmpdirMax": 1, 
                     "outdirMin": 1, 
@@ -324,9 +324,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 2000, 
-                    "ramMax": 2000, 
+                    "coresMax": 8, 
+                    "ramMin": 15300, 
+                    "ramMax": 15300, 
                     "tmpdirMin": "$(Math.ceil(0.9 * inputs.filename.size / 1048576))", 
                     "tmpdirMax": "$(Math.ceil(0.9 * inputs.filename.size / 1048576))", 
                     "outdirMin": "$(Math.ceil(0.9 * inputs.filename.size / 1048576))", 
@@ -679,10 +679,10 @@
                 }, 
                 {
                     "class": "ResourceRequirement", 
-                    "coresMin": "$(inputs.thread_count)", 
-                    "coresMax": "$(inputs.thread_count)", 
-                    "ramMin": 10000, 
-                    "ramMax": 10000, 
+                    "coresMin": 36, 
+                    "coresMax": 36, 
+                    "ramMin": 60000, 
+                    "ramMax": 75000, 
                     "tmpdirMin": "$(Math.ceil(2 * (inputs.fastq.size) / 1048576))", 
                     "tmpdirMax": "$(Math.ceil(2 * (inputs.fastq.size) / 1048576))", 
                     "outdirMin": "$(Math.ceil(2 * (inputs.fastq.size) / 1048576))", 
@@ -755,6 +755,13 @@
             "requirements": [
                 {
                     "class": "InlineJavascriptRequirement"
+                }, 
+                {
+                    "class": "ResourceRequirement", 
+                    "coresMin": 1, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800
                 }
             ], 
             "inputs": [
@@ -806,6 +813,13 @@
             "requirements": [
                 {
                     "class": "InlineJavascriptRequirement"
+                }, 
+                {
+                    "class": "ResourceRequirement", 
+                    "coresMin": 1, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800
                 }
             ], 
             "inputs": [
@@ -850,7 +864,7 @@
                     "id": "#decider_markdup_output.cwl/sqlite"
                 }
             ], 
-            "expression": "${\n   if(inputs.markdup_bam.length == 1) {\n     return({'bam': inputs.markdup_bam[0],\n             'sqlite': inputs.markdup_sqlite[0]}); \n   } else if(inputs.skip_markdup_bam.length == 1) {\n     return({'bam': inputs.skip_markdup_bam[0],\n             'sqlite': null}) \n   } else {\n     throw \"Either markdup bam or skip markdup bam arrays have to be length 1\"\n   }\n }\n"
+            "expression": "${\n   if(inputs.markdup_bam.length == 1) {\n     return({'bam': inputs.markdup_bam[0],\n             'sqlite': inputs.markdup_sqlite[0]});\n   } else if(inputs.skip_markdup_bam.length == 1) {\n     return({'bam': inputs.skip_markdup_bam[0],\n             'sqlite': null})\n   } else {\n     throw \"Either markdup bam or skip markdup bam arrays have to be length 1\"\n   }\n }\n"
         }, 
         {
             "class": "ExpressionTool", 
@@ -878,6 +892,13 @@
                 }, 
                 {
                     "class": "InlineJavascriptRequirement"
+                }, 
+                {
+                    "class": "ResourceRequirement", 
+                    "coresMin": 1, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800
                 }
             ], 
             "inputs": [
@@ -921,7 +942,7 @@
                     "id": "#emit_matched_fastq_readgroups.cwl/output"
                 }
             ], 
-            "expression": "${\n    // /begin chakrit / CC-BY-SA-4.0\n    // https://stackoverflow.com/a/2548133/810957\n    function endsWith(str, suffix) {\n      return str.indexOf(suffix, str.length - suffix.length) !== -1;\n    }\n    // /end chakrit / CC-BY-SA-4.0\n\n    // /begin 3DFace / CC-BY-SA-4.0\n    // https://stackoverflow.com/questions/3820381/need-a-basename-function-in-javascript#comment29942319_15270931\n    function local_basename(path) {\n      var basename = path.split(/[\\\\/]/).pop();\n      return basename\n    }\n    // /end 3DFace / CC-BY-SA-4.0\n\n    function get_slice_number(fastq_name) {\n      if (endsWith(fastq_name, '_1.fq.gz')) {\n        return -8\n      }\n      else if (endsWith(fastq_name, '_s.fq.gz')) {\n        return -8\n      }\n      else if (endsWith(fastq_name, '_o1.fq.gz')) {\n        return -9\n      }\n      else if (endsWith(fastq_name, '_o2.fq.gz')) {\n        return -9\n      }\n      else {\n        throw \"not recognized fastq suffix\"\n      }\n    }\n\n    // get readgroup name from fastq\n    function fastq_to_rg_id(fq_file_object) {\n      var fastq_name = local_basename(fq_file_object.location);\n      var slice_number = get_slice_number(fastq_name);\n      var readgroup_name = fastq_name.slice(0,slice_number);\n      return readgroup_name;\n    }\n\n    function load_bamrgs() {\n      var res = [];\n      for (var i = 0; i < inputs.bam_readgroup_contents.length; i++) {\n        var curr = JSON.parse(inputs.bam_readgroup_contents[i]);\n        res.push(curr);\n      }\n      return(res);\n    }\n\n    function find_graph_rg(bam_rgid) {\n      for (var i = 0; i < inputs.readgroup_meta_list.length; i++) {\n        var record = inputs.readgroup_meta_list[i];\n        if (record[\"ID\"] === bam_rgid) {\n          return(record);\n        }\n      }\n      return(null);\n    }\n\n    function find_bam_rg(bam_meta, rgid) {\n      for (var i = 0; i < bam_meta.length; i++) {\n        var record = bam_meta[i];\n        if (record[\"ID\"] === rgid) {\n          return(record);\n        }\n      }\n      return(null);\n    }\n\n    function make_record(readgroup_meta, forward_fastq, reverse_fastq) {\n      var output = {\"forward_fastq\": forward_fastq,\n                    \"reverse_fastq\": reverse_fastq,\n                    \"readgroup_meta\": readgroup_meta};\n      output.forward_fastq.format = \"edam:format_2182\";\n      if(reverse_fastq !== null) {\n        output.reverse_fastq.format = \"edam:format_2182\";\n      }\n      return(output);\n    }\n\n    function normalize_record(record) {\n      // first meta_rg has right sample\n      var first_rg = inputs.readgroup_meta_list[0];\n      var first_sm = first_rg['SM'];\n      var first_pl = first_rg['PL'].toUpperCase();\n\n      if(!record.readgroup_meta.hasOwnProperty('SM') || record.readgroup_meta['SM'] !== first_sm) {\n        record.readgroup_meta['SM'] = first_sm;\n      }\n\n      if(!record.readgroup_meta.hasOwnProperty('LB') || record.readgroup_meta['LB'] === null) {\n        record.readgroup_meta['LB'] = first_sm;\n      }\n\n      if(!record.readgroup_meta.hasOwnProperty('PL') || record.readgroup_meta['PL'] === null) {\n        record.readgroup_meta['PL'] = first_pl;\n      } else {\n        record.readgroup_meta['PL'] = record.readgroup_meta['PL'].toUpperCase();\n      }\n    }\n\n    // output\n    var output_array = [];\n\n    // bam rgs\n    var bam_meta = load_bamrgs();\n\n    // get readgroup names from fastq, lookup in graph, lookup in bam meta\n    // if needed.\n    for (var i = 0; i < inputs.forward_fastq_list.length; i++) {\n      var fq = inputs.forward_fastq_list[i];\n      var rev_fq = inputs.reverse_fastq_list.length > 0 ? inputs.reverse_fastq_list[i] : null;\n      var readgroup_name = fastq_to_rg_id(fq);\n\n      // try to look up in the graph metadata using rgname as both rgid and rgpu\n      var graph_rg = find_graph_rg(readgroup_name);\n      if (graph_rg !== null) {\n        var rec = make_record(graph_rg, fq, rev_fq); \n        normalize_record(rec);\n        output_array.push(rec);\n      }\n      else {\n        // Match with bam meta, try to lookup from PU if possible\n        var bam_rg = find_bam_rg(bam_meta, readgroup_name);\n        if(bam_rg === null) {\n          throw \"Unable to find the matching bam RG record\";\n        }\n        var rec = make_record(bam_rg, fq, rev_fq); \n        normalize_record(rec);\n        output_array.push(rec);\n      }\n    }\n    return {'output': output_array};\n  }\n"
+            "expression": "${\n    // /begin chakrit / CC-BY-SA-4.0\n    // https://stackoverflow.com/a/2548133/810957\n    function endsWith(str, suffix) {\n      return str.indexOf(suffix, str.length - suffix.length) !== -1;\n    }\n    // /end chakrit / CC-BY-SA-4.0\n\n    // /begin 3DFace / CC-BY-SA-4.0\n    // https://stackoverflow.com/questions/3820381/need-a-basename-function-in-javascript#comment29942319_15270931\n    function local_basename(path) {\n      var basename = path.split(/[\\\\/]/).pop();\n      return basename\n    }\n    // /end 3DFace / CC-BY-SA-4.0\n\n    function get_slice_number(fastq_name) {\n      if (endsWith(fastq_name, '_1.fq.gz')) {\n        return -8\n      }\n      else if (endsWith(fastq_name, '_s.fq.gz')) {\n        return -8\n      }\n      else if (endsWith(fastq_name, '_o1.fq.gz')) {\n        return -9\n      }\n      else if (endsWith(fastq_name, '_o2.fq.gz')) {\n        return -9\n      }\n      else {\n        throw \"not recognized fastq suffix\"\n      }\n    }\n\n    // get readgroup name from fastq\n    function fastq_to_rg_id(fq_file_object) {\n      var fastq_name = local_basename(fq_file_object.location);\n      var slice_number = get_slice_number(fastq_name);\n      var readgroup_name = fastq_name.slice(0,slice_number);\n      return readgroup_name;\n    }\n\n    function load_bamrgs() {\n      var res = [];\n      for (var i = 0; i < inputs.bam_readgroup_contents.length; i++) {\n        var curr = JSON.parse(inputs.bam_readgroup_contents[i]);\n        res.push(curr);\n      }\n      return(res);\n    }\n\n    function find_graph_rg(bam_rgid) {\n      for (var i = 0; i < inputs.readgroup_meta_list.length; i++) {\n        var record = inputs.readgroup_meta_list[i];\n        if (record[\"ID\"] === bam_rgid) {\n          return(record);\n        }\n      }\n      return(null);\n    }\n\n    function find_bam_rg(bam_meta, rgid) {\n      for (var i = 0; i < bam_meta.length; i++) {\n        var record = bam_meta[i];\n        if (record[\"ID\"] === rgid) {\n          return(record);\n        }\n      }\n      return(null);\n    }\n\n    function make_record(readgroup_meta, forward_fastq, reverse_fastq) {\n      var output = {\"forward_fastq\": forward_fastq,\n                    \"reverse_fastq\": reverse_fastq,\n                    \"readgroup_meta\": readgroup_meta};\n      output.forward_fastq.format = \"edam:format_2182\";\n      if(reverse_fastq !== null) {\n        output.reverse_fastq.format = \"edam:format_2182\";\n      }\n      return(output);\n    }\n\n    function normalize_record(record) {\n      // first meta_rg has right sample\n      var first_rg = inputs.readgroup_meta_list[0];\n      var first_sm = first_rg['SM'];\n      var first_pl = first_rg['PL'].toUpperCase();\n\n      if(!record.readgroup_meta.hasOwnProperty('SM') || record.readgroup_meta['SM'] !== first_sm) {\n        record.readgroup_meta['SM'] = first_sm;\n      }\n\n      if(!record.readgroup_meta.hasOwnProperty('LB') || record.readgroup_meta['LB'] === null) {\n        record.readgroup_meta['LB'] = first_sm;\n      }\n\n      if(!record.readgroup_meta.hasOwnProperty('PL') || record.readgroup_meta['PL'] === null) {\n        record.readgroup_meta['PL'] = first_pl;\n      } else {\n        record.readgroup_meta['PL'] = record.readgroup_meta['PL'].toUpperCase();\n      }\n    }\n\n    // output\n    var output_array = [];\n\n    // bam rgs\n    var bam_meta = load_bamrgs();\n\n    // get readgroup names from fastq, lookup in graph, lookup in bam meta\n    // if needed.\n    for (var i = 0; i < inputs.forward_fastq_list.length; i++) {\n      var fq = inputs.forward_fastq_list[i];\n      var rev_fq = inputs.reverse_fastq_list.length > 0 ? inputs.reverse_fastq_list[i] : null;\n      var readgroup_name = fastq_to_rg_id(fq);\n\n      // try to look up in the graph metadata using rgname as both rgid and rgpu\n      var graph_rg = find_graph_rg(readgroup_name);\n      if (graph_rg !== null) {\n        var rec = make_record(graph_rg, fq, rev_fq);\n        normalize_record(rec);\n        output_array.push(rec);\n      }\n      else {\n        // Match with bam meta, try to lookup from PU if possible\n        var bam_rg = find_bam_rg(bam_meta, readgroup_name);\n        if(bam_rg === null) {\n          throw \"Unable to find the matching bam RG record\";\n        }\n        var rec = make_record(bam_rg, fq, rev_fq);\n        normalize_record(rec);\n        output_array.push(rec);\n      }\n    }\n    return {'output': output_array};\n  }\n"
         }, 
         {
             "class": "ExpressionTool", 
@@ -949,6 +970,13 @@
                 }, 
                 {
                     "class": "InlineJavascriptRequirement"
+                }, 
+                {
+                    "class": "ResourceRequirement", 
+                    "coresMin": 1, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800
                 }
             ], 
             "inputs": [
@@ -994,10 +1022,10 @@
                 }, 
                 {
                     "class": "ResourceRequirement", 
-                    "coresMin": 2, 
+                    "coresMin": 1, 
                     "coresMax": 2, 
-                    "ramMin": 2000, 
-                    "ramMax": 2000, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": "$(Math.ceil(1.1 * fastq_files_size(inputs.fastq1, inputs.fastq2)))", 
                     "tmpdirMax": "$(Math.ceil(1.1 * fastq_files_size(inputs.fastq1, inputs.fastq2)))", 
                     "outdirMin": "$(Math.ceil(1.1 * fastq_files_size(inputs.fastq1, inputs.fastq2)))", 
@@ -1079,10 +1107,10 @@
                 }, 
                 {
                     "class": "ResourceRequirement", 
-                    "coresMin": "$(inputs.threads)", 
-                    "coresMax": "$(inputs.threads)", 
-                    "ramMin": 5000, 
-                    "ramMax": 5000, 
+                    "coresMin": 1, 
+                    "coresMax": 4, 
+                    "ramMin": 7600, 
+                    "ramMax": 7600, 
                     "tmpdirMin": 50, 
                     "tmpdirMax": 50, 
                     "outdirMin": 5, 
@@ -1252,9 +1280,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 1, 
                     "tmpdirMax": 1, 
                     "outdirMin": 1, 
@@ -1298,9 +1326,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 100, 
                     "tmpdirMax": 100, 
                     "outdirMin": 10, 
@@ -1354,6 +1382,13 @@
                 }, 
                 {
                     "class": "InlineJavascriptRequirement"
+                }, 
+                {
+                    "class": "ResourceRequirement", 
+                    "coresMin": 1, 
+                    "coresMax": 8, 
+                    "ramMin": 15300, 
+                    "ramMax": 15300
                 }
             ], 
             "inputs": [
@@ -1436,6 +1471,13 @@
                 }, 
                 {
                     "class": "InlineJavascriptRequirement"
+                }, 
+                {
+                    "class": "ResourceRequirement", 
+                    "coresMin": 1, 
+                    "coresMax": 8, 
+                    "ramMin": 15300, 
+                    "ramMax": 15300
                 }
             ], 
             "inputs": [
@@ -1515,6 +1557,13 @@
                 }, 
                 {
                     "class": "InlineJavascriptRequirement"
+                }, 
+                {
+                    "class": "ResourceRequirement", 
+                    "coresMin": 1, 
+                    "coresMax": 4, 
+                    "ramMin": 7600, 
+                    "ramMax": 7600
                 }
             ], 
             "inputs": [
@@ -1571,6 +1620,13 @@
                 }, 
                 {
                     "class": "InlineJavascriptRequirement"
+                }, 
+                {
+                    "class": "ResourceRequirement", 
+                    "coresMin": 1, 
+                    "coresMax": 4, 
+                    "ramMin": 7600, 
+                    "ramMax": 7600
                 }
             ], 
             "inputs": [
@@ -1650,9 +1706,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 10, 
                     "tmpdirMax": 10, 
                     "outdirMin": 10, 
@@ -1724,9 +1780,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 10, 
                     "tmpdirMax": 10, 
                     "outdirMin": 10, 
@@ -1803,6 +1859,13 @@
                             "$import": "#readgroup.yml/readgroups_bam_uuid"
                         }
                     ]
+                }, 
+                {
+                    "class": "ResourceRequirement", 
+                    "coresMin": 1, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800
                 }
             ], 
             "inputs": [
@@ -1842,11 +1905,11 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
-                    "tmpdirMin": "${\nvar req_space = 0;\nfor (var i = 0; i < inputs.source_sqlite.length; i++) {\n    req_space += inputs.source_sqlite[i].size;\n  }\nreturn Math.ceil(2 * (req_space / 1048576));\n}      \n", 
-                    "outdirMin": "${\nvar req_space = 0;\nfor (var i = 0; i < inputs.source_sqlite.length; i++) {\n    req_space += inputs.source_sqlite[i].size;\n  }\nreturn Math.ceil(req_space / 1048576);\n}      \n"
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
+                    "tmpdirMin": "${\nvar req_space = 0;\nfor (var i = 0; i < inputs.source_sqlite.length; i++) {\n    req_space += inputs.source_sqlite[i].size;\n  }\nreturn Math.ceil(2 * (req_space / 1048576));\n}\n", 
+                    "outdirMin": "${\nvar req_space = 0;\nfor (var i = 0; i < inputs.source_sqlite.length; i++) {\n    req_space += inputs.source_sqlite[i].size;\n  }\nreturn Math.ceil(req_space / 1048576);\n}\n"
                 }
             ], 
             "inputs": [
@@ -1904,9 +1967,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 49152, 
-                    "ramMax": 49152, 
+                    "coresMax": 16, 
+                    "ramMin": 30600, 
+                    "ramMax": 30600, 
                     "tmpdirMin": 1000, 
                     "tmpdirMax": 1000, 
                     "outdirMin": 1000, 
@@ -2140,9 +2203,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 10, 
                     "tmpdirMax": 10, 
                     "outdirMin": 10, 
@@ -2215,9 +2278,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 10000, 
-                    "ramMax": 10000, 
+                    "coresMax": 8, 
+                    "ramMin": 15300, 
+                    "ramMax": 15300, 
                     "tmpdirMin": 5, 
                     "tmpdirMax": 5, 
                     "outdirMin": 5, 
@@ -2329,9 +2392,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 5, 
                     "tmpdirMax": 5, 
                     "outdirMin": 5, 
@@ -2419,9 +2482,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 32768, 
-                    "ramMax": 32768, 
+                    "coresMax": 16, 
+                    "ramMin": 30600, 
+                    "ramMax": 30600, 
                     "tmpdirMin": 1000, 
                     "tmpdirMax": 1000, 
                     "outdirMin": 1000, 
@@ -2655,9 +2718,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 10, 
                     "tmpdirMax": 10, 
                     "outdirMin": 10, 
@@ -2731,9 +2794,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 10000, 
-                    "ramMax": 10000, 
+                    "coresMax": 8, 
+                    "ramMin": 15300, 
+                    "ramMax": 15300, 
                     "tmpdirMin": 10, 
                     "tmpdirMax": 10, 
                     "outdirMin": 10, 
@@ -2815,9 +2878,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 10, 
                     "tmpdirMax": 10, 
                     "outdirMin": 10, 
@@ -2903,9 +2966,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 15000, 
-                    "ramMax": 15000, 
+                    "coresMax": 8, 
+                    "ramMin": 15300, 
+                    "ramMax": 15300, 
                     "tmpdirMin": "$(Math.ceil(1.1 * sum_file_array_size(inputs.INPUT)))", 
                     "outdirMin": "$(Math.ceil(1.1 * sum_file_array_size(inputs.INPUT)))"
                 }
@@ -3003,9 +3066,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 1, 
                     "tmpdirMax": 1, 
                     "outdirMin": 1, 
@@ -3084,9 +3147,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 10000, 
-                    "ramMax": 10000, 
+                    "coresMax": 8, 
+                    "ramMin": 15300, 
+                    "ramMax": 15300, 
                     "tmpdirMin": "$(Math.ceil(2 * sum_file_array_size(inputs.INPUT)))", 
                     "outdirMin": "$(Math.ceil(2 * sum_file_array_size(inputs.INPUT)))"
                 }
@@ -3221,9 +3284,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 5000, 
-                    "ramMax": 5000, 
+                    "coresMax": 4, 
+                    "ramMin": 7600, 
+                    "ramMax": 7600, 
                     "tmpdirMin": 1000, 
                     "tmpdirMax": 1000, 
                     "outdirMin": 1000, 
@@ -3347,9 +3410,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 1, 
                     "tmpdirMax": 1, 
                     "outdirMin": 1, 
@@ -3423,9 +3486,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 1, 
                     "tmpdirMax": 1, 
                     "outdirMin": 1, 
@@ -3483,9 +3546,10 @@
                 }, 
                 {
                     "class": "ResourceRequirement", 
-                    "coresMin": "$(inputs.threads)", 
-                    "ramMin": 5000, 
-                    "ramMax": 5000, 
+                    "coresMin": 1, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 5, 
                     "tmpdirMax": 5, 
                     "outdirMin": 5, 
@@ -3539,9 +3603,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 2000, 
-                    "ramMax": 2000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 5, 
                     "tmpdirMax": 5, 
                     "outdirMin": 5, 
@@ -3615,9 +3679,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 5000, 
-                    "ramMax": 5000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 5, 
                     "tmpdirMax": 5, 
                     "outdirMin": 5, 
@@ -3666,9 +3730,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 5, 
                     "tmpdirMax": 5, 
                     "outdirMin": 5, 
@@ -3755,8 +3819,10 @@
                 }, 
                 {
                     "class": "ResourceRequirement", 
-                    "coresMin": "$(inputs.threads)", 
-                    "ramMin": 1000, 
+                    "coresMin": 1, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": "$(file_size_multiplier(inputs.input_bam))", 
                     "outdirMin": "$(file_size_multiplier(inputs.input_bam))"
                 }
@@ -3818,8 +3884,10 @@
                 }, 
                 {
                     "class": "ResourceRequirement", 
-                    "coresMin": "$(inputs.threads)", 
-                    "ramMin": 1000, 
+                    "coresMin": 1, 
+                    "coresMax": 8, 
+                    "ramMin": 15300, 
+                    "ramMax": 15300, 
                     "tmpdirMin": "$((2 * inputs.input_bam.size) / 1048576)", 
                     "outdirMin": "$((2 * inputs.input_bam.size) / 1048576)"
                 }
@@ -3887,8 +3955,10 @@
                 }, 
                 {
                     "class": "ResourceRequirement", 
-                    "coresMin": "$(inputs.threads)", 
-                    "ramMin": 5000, 
+                    "coresMin": 1, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 5, 
                     "outdirMin": 5
                 }
@@ -3940,9 +4010,9 @@
                 {
                     "class": "ResourceRequirement", 
                     "coresMin": 1, 
-                    "coresMax": 1, 
-                    "ramMin": 1000, 
-                    "ramMax": 1000, 
+                    "coresMax": 2, 
+                    "ramMin": 3800, 
+                    "ramMax": 3800, 
                     "tmpdirMin": 5, 
                     "tmpdirMax": 5, 
                     "outdirMin": 5, 
