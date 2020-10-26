@@ -6,10 +6,10 @@ requirements:
     dockerPull: quay.io/ncigdc/samtools:147bd4cc606a63c7435907d97fea6e94e9ea9ed58c18f390cab8bc40b1992df7
   - class: InlineJavascriptRequirement
   - class: ResourceRequirement
-    coresMin: 1
-    coresMax: 2
-    ramMin: 3800
-    ramMax: 3800
+    coresMin: 4
+    coresMax: 4
+    ramMin: 3600
+    ramMax: 3600
     tmpdirMin: 5
     tmpdirMax: 5
     outdirMin: 5

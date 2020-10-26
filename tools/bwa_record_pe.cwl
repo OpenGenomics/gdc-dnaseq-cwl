@@ -10,10 +10,10 @@ requirements:
       - $import: readgroup.yml
   - class: ShellCommandRequirement
   - class: ResourceRequirement
-    coresMin: 36
-    coresMax: 36
-    ramMin: 60000
-    ramMax: 75000
+    coresMin: 8
+    coresMax: 8
+    ramMin: 28800
+    ramMax: 28800
     tmpdirMin: $(Math.ceil(2 * (inputs.fastq1.size + inputs.fastq2.size) / 1048576))
     tmpdirMax: $(Math.ceil(2 * (inputs.fastq1.size + inputs.fastq2.size) / 1048576))
     outdirMin: $(Math.ceil(2 * (inputs.fastq1.size + inputs.fastq2.size) / 1048576))

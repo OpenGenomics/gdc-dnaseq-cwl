@@ -7,9 +7,9 @@ requirements:
     dockerPull: quay.io/ncigdc/fastqc_to_json:0ebd446f08d9eb6ed5b069e9ae53ad822236dc56bb1154f9df0e0c22b5724ae7
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 2
-    ramMin: 3800
-    ramMax: 3800
+    coresMax: 1
+    ramMin: 900
+    ramMax: 900
     tmpdirMin: 1
     tmpdirMax: 1
     outdirMin: 1

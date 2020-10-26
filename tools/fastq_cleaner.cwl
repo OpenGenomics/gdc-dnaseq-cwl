@@ -9,9 +9,9 @@ requirements:
       $import: ./expression_lib.cwl
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 2
-    ramMin: 3800
-    ramMax: 3800
+    coresMax: 1
+    ramMin: 1800
+    ramMax: 1800
     tmpdirMin: $(Math.ceil(1.1 * fastq_files_size(inputs.fastq1, inputs.fastq2)))
     tmpdirMax: $(Math.ceil(1.1 * fastq_files_size(inputs.fastq1, inputs.fastq2)))
     outdirMin: $(Math.ceil(1.1 * fastq_files_size(inputs.fastq1, inputs.fastq2)))

@@ -8,9 +8,9 @@ requirements:
       - $import: readgroup.yml
   - class: ResourceRequirement
     coresMin: 1
-    coresMax: 2
-    ramMin: 3800
-    ramMax: 3800
+    coresMax: 1
+    ramMin: 900
+    ramMax: 900
 
 inputs:
   input:

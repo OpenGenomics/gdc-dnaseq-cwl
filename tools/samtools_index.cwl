@@ -12,10 +12,10 @@ requirements:
     expressionLib:
       $import: ./expression_lib.cwl
   - class: ResourceRequirement
-    coresMin: 1
-    coresMax: 2
-    ramMin: 3800
-    ramMax: 3800
+    coresMin: 8
+    coresMax: 8
+    ramMin: 14400
+    ramMax: 14400
     tmpdirMin: $(file_size_multiplier(inputs.input_bam))
     outdirMin: $(file_size_multiplier(inputs.input_bam))
 
