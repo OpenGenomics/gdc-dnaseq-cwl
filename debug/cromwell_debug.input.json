@@ -1,5 +1,5 @@
 {
-    "bam": {"class": "File", "path": "s3://gwf-core-stack-gwfcore-bucket/cromwell-execution/cwl_temp_file_33e4e002-48ea-4097-aa75-298774a8e7ce.cwl#main/33e4e002-48ea-4097-aa75-298774a8e7ce/call-conditional_markduplicates/shard-0/cwl_temp_file_33e4e002-48ea-4097-aa75-298774a8e7ce.cwl#conditional_markduplicates.cwl/d9d830b3-f890-45b4-808e-dab4ad30b68b/call-picard_markduplicates/1e680eb5-56ce-48ce-b51f-ee66c936794e_cromwell_test.bam"},
+    "bam": {"class": "File", "path": "s3://gwf-core-stack-gwfcore-bucket/cromwell-execution/cwl_temp_file_33e4e002-48ea-4097-aa75-298774a8e7ce.cwl#main/33e4e002-48ea-4097-aa75-298774a8e7ce/call-conditional_markduplicates/shard-0/cwl_temp_file_33e4e002-48ea-4097-aa75-298774a8e7ce.cwl#conditional_markduplicates.cwl/d9d830b3-f890-45b4-808e-dab4ad30b68b/call-sort_markdup_bam/1e680eb5-56ce-48ce-b51f-ee66c936794e_cromwell_test.bam"},
     "job_uuid": "074790a1-52b6-4cd5-8d5c-f71e91fd2a2e",
     "thread_count": 8,
     "bam_name": "1e680eb5-56ce-48ce-b51f-ee66c936794e_cromwell_test.bam",
